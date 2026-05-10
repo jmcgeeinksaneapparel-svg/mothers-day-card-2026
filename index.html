@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Mother's Day, Shayla!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(135deg, #fff8f0 0%, #ffecd6 50%, #fff0f5 100%);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      padding: 30px 15px 60px;
+    }
+
+    /* ── SPLASH ── */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(160deg, #7b1a2a 0%, #b5334d 35%, #d46a4a 70%, #e8a070 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      cursor: pointer;
+      transition: opacity 0.8s ease;
+    }
+    #splash.fade-out { opacity: 0; pointer-events: none; }
+    .splash-flowers {
+      font-size: 52px;
+      letter-spacing: 12px;
+      margin-bottom: 30px;
+      animation: sway 3s ease-in-out infinite;
+    }
+    @keyframes sway {
+      0%,100% { transform: scale(1) rotate(-2deg); }
+      50%      { transform: scale(1.08) rotate(2deg); }
+    }
+    .splash-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 7vw, 56px);
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 2px 16px rgba(60,0,20,0.4);
+      line-height: 1.2;
+    }
+    .splash-title em {
+      display: block;
+      font-size: 0.55em;
+      font-weight: 400;
+      color: #ffe8d6;
+      margin-top: 8px;
+      letter-spacing: 2px;
+    }
+    .splash-btn {
+      margin-top: 40px;
+      padding: 16px 44px;
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 50px;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+      50%      { box-shadow: 0 0 0 14px rgba(255,255,255,0); }
+    }
+    .splash-hint {
+      margin-top: 16px;
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    /* ── TOOLBAR ── */
+    .toolbar {
+      max-width: 860px;
+      margin: 0 auto 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .toolbar-note {
+      flex: 1;
+      font-size: 13px;
+      color: #8a4020;
+      background: #fff5ee;
+      border: 1px dashed #e8b090;
+      border-radius: 8px;
+      padding: 8px 14px;
+      line-height: 1.4;
+    }
+    .toolbar-note strong { color: #b5334d; }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    .btn-save {
+      background: linear-gradient(135deg, #b5334d, #d4704a);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(160,60,40,0.3);
+    }
+    .btn-save:hover { opacity: 0.9; }
+    .btn-music {
+      background: linear-gradient(135deg, #fde8d8, #fdd0c0);
+      color: #b5334d;
+      border: 1px solid #e8a070;
+    }
+    .btn-photos {
+      background: linear-gradient(135deg, #b5334d, #d4704a);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(160,60,40,0.3);
+    }
+    .btn-photos:hover { opacity: 0.9; }
+
+    /* ── CARD ── */
+    .card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fffcf9;
+      border-radius: 18px;
+      box-shadow: 0 8px 40px rgba(160,60,40,0.13);
+      overflow: hidden;
+      border: 1.5px solid #f5ddc8;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(160deg, #7b1a2a 0%, #b5334d 40%, #d4704a 80%, #e8a070 100%);
+      padding: 50px 30px 38px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '🌹🌸🌹🌸🌹🌸🌹🌸🌹🌸🌹';
+      font-size: 28px;
+      position: absolute;
+      top: 8px; left: 0; right: 0;
+      letter-spacing: 2px;
+      opacity: 0.25;
+    }
+    .header::after {
+      content: '🌹🌸🌹🌸🌹🌸🌹🌸🌹🌸🌹';
+      font-size: 28px;
+      position: absolute;
+      bottom: 8px; left: 0; right: 0;
+      letter-spacing: 2px;
+      opacity: 0.25;
+    }
+    .header .holiday {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #ffe8d6;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 8vw, 60px);
+      color: #fff;
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(60,0,20,0.35);
+    }
+    .header h1 em {
+      display: block;
+      font-style: italic;
+      font-size: 0.62em;
+      color: #ffe8d6;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+    .header .hearts {
+      margin-top: 20px;
+      font-size: 24px;
+      letter-spacing: 8px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .ornament {
+      text-align: center;
+      padding: 20px 0 8px;
+      font-size: 28px;
+      letter-spacing: 10px;
+      color: #c05030;
+    }
+
+    /* ── MESSAGE ── */
+    .message-wrap {
+      padding: 8px 44px 30px;
+      text-align: center;
+    }
+    .message-wrap p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(16px, 3.5vw, 21px);
+      color: #4a1a10;
+      line-height: 1.85;
+    }
+    .message-wrap .signature {
+      margin-top: 20px;
+      font-family: 'Playfair Display', serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #b5334d;
+    }
+
+    /* ── PHOTOS ── */
+    .photos-section { padding: 0 18px 22px; }
+    .photos-label {
+      text-align: center;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      font-size: 11px;
+      color: #b07060;
+      padding: 4px 0 16px;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    @keyframes fadeInPhoto {
+      from { opacity: 0; transform: scale(0.92); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .photo-frame {
+      border-radius: 10px;
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      border: 3px solid #f5ddc8;
+      box-shadow: 0 3px 12px rgba(160,60,40,0.12);
+      background: #1a0a06;
+      position: relative;
+      cursor: default;
+      transition: transform 0.18s, box-shadow 0.18s;
+      opacity: 0;
+    }
+    .photo-frame.revealed {
+      animation: fadeInPhoto 1.4s ease forwards;
+    }
+    .photo-frame.revealed:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(160,60,40,0.22); }
+    .photo-frame img { width: 100%; height: 100%; object-fit: contain; display: block; background: #1a0a06; }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: linear-gradient(160deg, #e8a070 0%, #d4704a 40%, #b5334d 80%, #7b1a2a 100%);
+      padding: 26px 36px 30px;
+      text-align: center;
+    }
+    .footer p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.65;
+      text-shadow: 0 1px 6px rgba(60,0,20,0.3);
+    }
+    .footer .year {
+      margin-top: 12px;
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      letter-spacing: 5px;
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash" onclick="openCard()" class="" style="display: flex; opacity: 1;">
+  <div class="splash-flowers">🌹 🌸 🌹</div>
+  <div class="splash-title">
+    Happy Mother's Day
+    <em>A special card for Shayla</em>
+  </div>
+  <button class="splash-btn">Open Your Card</button>
+  <div class="splash-hint">♪ with music ♪</div>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar" id="toolbar" style="display: none;">
+  <div class="toolbar-note">
+    <strong>Step 1:</strong> Click <strong>📸 Load All Photos</strong> and select all 13 photos at once. <strong>Step 2:</strong> Click <strong>💾 Save Card</strong> to download the finished card ready to email!
+  </div>
+  <button class="btn btn-photos" onclick="loadAllPhotos()">📸 Load All Photos</button>
+  <button class="btn btn-music" id="musicBtn" onclick="toggleMusic()">🔇 Stop Music</button>
+  <button class="btn btn-save" onclick="saveCard()">💾 Save Card</button>
+</div>
+
+<!-- CARD -->
+<div class="card" id="card">
+  <div class="header">
+    <div class="holiday">With All My Love</div>
+    <h1>Happy Mother's Day<em>Shayla</em></h1>
+    <div class="hearts">♥ &nbsp; ♥ &nbsp; ♥</div>
+  </div>
+
+  <div class="ornament">🌹 🌸 🌹</div>
+
+  <div class="message-wrap">
+    <p>
+      I can’t believe it’s been 16 years —<br>
+      time truly flies when you’re with your person.<br>
+      You have always put the kids before yourself,<br>
+      giving everything without ever asking for anything in return.<br>
+      Thank you for always being there<br>
+      for the kids and for me.<br>
+      I love you more than words can say.
+    </p>
+    <div class="signature">Forever yours, Jason ❤️</div>
+  </div>
+
+  <div class="photos-section">
+    <div class="photos-label">Our Story Together</div>
+    <div class="photo-grid" id="photoGrid">
+      <div class="photo-frame has-photo" id="frame0" style="opacity: 0;"><img id="img0" src="Pic 1.png" alt="Photo 1"></div>
+      <div class="photo-frame has-photo" id="frame1" style="opacity: 0;"><img id="img1" src="Pic 2.jpg" alt="Photo 2"></div>
+      <div class="photo-frame has-photo" id="frame2" style="opacity: 0;"><img id="img2" src="Pic 3.jpg" alt="Photo 3"></div>
+      <div class="photo-frame has-photo" id="frame3" style="opacity: 0;"><img id="img3" src="Pic 4.jpg" alt="Photo 4"></div>
+      <div class="photo-frame has-photo" id="frame4" style="opacity: 0;"><img id="img4" src="Pic 5.jpg" alt="Photo 5"></div>
+      <div class="photo-frame has-photo" id="frame5" style="opacity: 0;"><img id="img5" src="Pic 6.jpg" alt="Photo 6"></div>
+      <div class="photo-frame has-photo" id="frame6" style="opacity: 0;"><img id="img6" src="Pic 7.jpg" alt="Photo 7"></div>
+      <div class="photo-frame has-photo" id="frame7" style="opacity: 0;"><img id="img7" src="Pic 8.jpg" alt="Photo 8"></div>
+      <div class="photo-frame has-photo" id="frame8" style="opacity: 0;"><img id="img8" src="Pic 9.png" alt="Photo 9"></div>
+      <div class="photo-frame has-photo" id="frame9" style="opacity: 0;"><img id="img9" src="Pic 10.jpg" alt="Photo 10"></div>
+      <div class="photo-frame has-photo" id="frame10" style="opacity: 0;"><img id="img10" src="Pic 11.jpg" alt="Photo 11"></div>
+      <div class="photo-frame has-photo" id="frame11" style="opacity: 0;"><img id="img11" src="Pic 12.jpg" alt="Photo 12"></div>
+      <div class="photo-frame has-photo" id="frame12" style="opacity: 0;"><img id="img12" src="Pic 13.jpg" alt="Photo 13"></div>
+      <div class="photo-frame has-photo" id="frame13" style="opacity: 0;"><img id="img13" src="Pic 14.jpg" alt="Photo 14"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>“I have died every day waiting for you. Darling, don’t be afraid —<br>I have loved you for a thousand years, I’ll love you for a thousand more.”</p>
+    <div class="year">Mother’s Day · May 2026</div>
+  </div>
+</div>
+
+<!-- Audio — A Thousand Years, Christina Perri (direct MP3) -->
+<audio id="bgMusic" loop="">
+  <source src="https://archive.org/download/ChristinaPerriAThousandYearsOfficialMusicVideo/Christina%20Perri%20%20%20A%20Thousand%20Years%20%28Official%20Music%20Video%29.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  let musicPlaying = false;
+
+  // Show all frames at full opacity in preview/editing mode
+  for (let i = 0; i < 14; i++) {
+    document.getElementById('frame' + i).style.opacity = '1';
+  }
+
+  function loadAllPhotos() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.multiple = true;
+    input.accept = 'image/*';
+    input.onchange = function(e) {
+      // Sort files by name numerically so Pic 1, Pic 2 ... Pic 13 maps to slots 0–12
+      const files = Array.from(e.target.files).sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
+      );
+      files.forEach((file, i) => {
+        if (i >= 13) return;
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+          const img   = document.getElementById('img' + i);
+          const frame = document.getElementById('frame' + i);
+          img.src = ev.target.result;
+          frame.classList.add('has-photo');
+          frame.style.opacity = '1';
+        };
+        reader.readAsDataURL(file);
+      });
+    };
+    input.click();
+  }
+
+  function openCard() {
+    const splash = document.getElementById('splash');
+    splash.classList.add('fade-out');
+    setTimeout(() => { splash.style.display = 'none'; }, 850);
+
+    // Reset frames to hidden for the reveal
+    for (let i = 0; i < 14; i++) {
+      const frame = document.getElementById('frame' + i);
+      frame.classList.remove('revealed');
+      frame.style.opacity = '0';
+    }
+
+    startMusic();
+  }
+
+  function startMusic() {
+    const audio = document.getElementById('bgMusic');
+    audio.play().then(() => {
+      musicPlaying = true;
+      document.getElementById('musicBtn').textContent = '🔇 Stop Music';
+      startPhotoReveal();
+    }).catch(() => {
+      startPhotoReveal();
+      document.getElementById('musicBtn').textContent = '🎵 Play Music';
+    });
+  }
+
+  function startPhotoReveal() {
+    // A Thousand Years is ~4:45. 13 photos at 22s apart = last photo at 4:24, plenty before song ends.
+    for (let i = 0; i < 14; i++) {
+      setTimeout(() => {
+        const frame = document.getElementById('frame' + i);
+        frame.style.opacity = '';
+        frame.classList.add('revealed');
+      }, i * 22000);
+    }
+  }
+
+  function toggleMusic() {
+    const audio = document.getElementById('bgMusic');
+    const btn   = document.getElementById('musicBtn');
+    if (musicPlaying) {
+      audio.pause();
+      musicPlaying = false;
+      btn.textContent = '🎵 Play Music';
+    } else {
+      audio.play().then(() => {
+        musicPlaying = true;
+        btn.textContent = '🔇 Stop Music';
+      });
+    }
+  }
+
+  function saveCard() {
+    const toolbar = document.getElementById('toolbar');
+    const splash  = document.getElementById('splash');
+    const audio   = document.getElementById('bgMusic');
+
+    audio.pause();
+    musicPlaying = false;
+
+    // Reset splash to initial state
+    splash.style.display  = 'flex';
+    splash.style.opacity  = '1';
+    splash.className      = '';
+
+    // Reset all frames to hidden
+    for (let i = 0; i < 14; i++) {
+      const frame = document.getElementById('frame' + i);
+      frame.classList.remove('revealed');
+      frame.style.opacity = '0';
+    }
+
+    // Try canvas embed for self-contained file
+    for (let i = 0; i < 14; i++) {
+      const img = document.getElementById('img' + i);
+      if (img && img.complete && img.naturalWidth && !img.src.startsWith('data:')) {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width  = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          canvas.getContext('2d').drawImage(img, 0, 0);
+          img.src = canvas.toDataURL('image/jpeg', 0.88);
+        } catch(e) {}
+      }
+    }
+
+    toolbar.style.display = 'none';
+    const html = '<!DOCTYPE html>\n<html lang="en">\n' + document.documentElement.innerHTML + '\n</html>';
+    toolbar.style.display = '';
+
+    // Restore preview state
+    splash.style.display = 'none';
+    for (let i = 0; i < 14; i++) {
+      document.getElementById('frame' + i).style.opacity = '1';
+    }
+
+    const blob = new Blob([html], { type: 'text/html' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href = url;
+    a.download = 'mothers_day_card_shayla_FINAL.html';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+</script>
+
+
+</body>
+</html>
