@@ -1,1 +1,491 @@
-﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Mother's Day, Shayla!</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: linear-gradient(135deg, #fff8f0 0%, #ffecd6 50%, #fff0f5 100%);
+      font-family: 'Lato', sans-serif;
+      min-height: 100vh;
+      padding: 30px 15px 60px;
+    }
+
+    /* ── SPLASH ── */
+    #splash {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(160deg, #7b1a2a 0%, #b5334d 35%, #d46a4a 70%, #e8a070 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      cursor: pointer;
+      transition: opacity 0.8s ease;
+    }
+    #splash.fade-out { opacity: 0; pointer-events: none; }
+    .splash-flowers {
+      font-size: 52px;
+      letter-spacing: 12px;
+      margin-bottom: 30px;
+      animation: sway 3s ease-in-out infinite;
+    }
+    @keyframes sway {
+      0%,100% { transform: scale(1) rotate(-2deg); }
+      50%      { transform: scale(1.08) rotate(2deg); }
+    }
+    .splash-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 7vw, 56px);
+      color: #fff;
+      text-align: center;
+      text-shadow: 0 2px 16px rgba(60,0,20,0.4);
+      line-height: 1.2;
+    }
+    .splash-title em {
+      display: block;
+      font-size: 0.55em;
+      font-weight: 400;
+      color: #ffe8d6;
+      margin-top: 8px;
+      letter-spacing: 2px;
+    }
+    .splash-btn {
+      margin-top: 40px;
+      padding: 16px 44px;
+      background: rgba(255,255,255,0.18);
+      border: 2px solid rgba(255,255,255,0.6);
+      border-radius: 50px;
+      color: #fff;
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      font-weight: 300;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+      50%      { box-shadow: 0 0 0 14px rgba(255,255,255,0); }
+    }
+    .splash-hint {
+      margin-top: 16px;
+      color: rgba(255,255,255,0.55);
+      font-size: 13px;
+      letter-spacing: 2px;
+    }
+
+    /* ── TOOLBAR ── */
+    .toolbar {
+      max-width: 860px;
+      margin: 0 auto 16px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1000;
+    }
+    .toolbar-note {
+      flex: 1;
+      font-size: 13px;
+      color: #8a4020;
+      background: #fff5ee;
+      border: 1px dashed #e8b090;
+      border-radius: 8px;
+      padding: 8px 14px;
+      line-height: 1.4;
+    }
+    .toolbar-note strong { color: #b5334d; }
+    .btn {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+      font-weight: 400;
+      white-space: nowrap;
+    }
+    .btn-save {
+      background: linear-gradient(135deg, #b5334d, #d4704a);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(160,60,40,0.3);
+    }
+    .btn-save:hover { opacity: 0.9; }
+    .btn-music {
+      background: linear-gradient(135deg, #fde8d8, #fdd0c0);
+      color: #b5334d;
+      border: 1px solid #e8a070;
+    }
+    .btn-photos {
+      background: linear-gradient(135deg, #b5334d, #d4704a);
+      color: #fff;
+      box-shadow: 0 3px 12px rgba(160,60,40,0.3);
+    }
+    .btn-photos:hover { opacity: 0.9; }
+
+    /* ── CARD ── */
+    .card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: #fffcf9;
+      border-radius: 18px;
+      box-shadow: 0 8px 40px rgba(160,60,40,0.13);
+      overflow: hidden;
+      border: 1.5px solid #f5ddc8;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      background: linear-gradient(160deg, #7b1a2a 0%, #b5334d 40%, #d4704a 80%, #e8a070 100%);
+      padding: 50px 30px 38px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .header::before {
+      content: '🌹🌸🌹🌸🌹🌸🌹🌸🌹🌸🌹';
+      font-size: 28px;
+      position: absolute;
+      top: 8px; left: 0; right: 0;
+      letter-spacing: 2px;
+      opacity: 0.25;
+    }
+    .header::after {
+      content: '🌹🌸🌹🌸🌹🌸🌹🌸🌹🌸🌹';
+      font-size: 28px;
+      position: absolute;
+      bottom: 8px; left: 0; right: 0;
+      letter-spacing: 2px;
+      opacity: 0.25;
+    }
+    .header .holiday {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #ffe8d6;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 8vw, 60px);
+      color: #fff;
+      line-height: 1.15;
+      text-shadow: 0 2px 12px rgba(60,0,20,0.35);
+    }
+    .header h1 em {
+      display: block;
+      font-style: italic;
+      font-size: 0.62em;
+      color: #ffe8d6;
+      margin-top: 6px;
+      font-weight: 400;
+    }
+    .header .hearts {
+      margin-top: 20px;
+      font-size: 24px;
+      letter-spacing: 8px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* ── ORNAMENT / DIVIDERS ── */
+    .ornament {
+      text-align: center;
+      padding: 28px 20px 10px;
+      font-size: 22px;
+      letter-spacing: 10px;
+      color: #d4704a;
+      opacity: 0.6;
+    }
+
+    /* ── MESSAGE ── */
+    .message-section {
+      padding: 30px 40px 20px;
+      text-align: center;
+    }
+    .message-section p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 2.5vw, 20px);
+      color: #5a2010;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .signature {
+      padding: 24px 40px 36px;
+      text-align: center;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(18px, 3vw, 24px);
+      color: #b5334d;
+    }
+
+    /* ── MUSIC BUTTON ── */
+    .music-bar {
+      text-align: center;
+      padding: 18px 20px 10px;
+    }
+    .music-btn {
+      padding: 12px 30px;
+      background: linear-gradient(135deg, #b5334d, #d4704a);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      box-shadow: 0 3px 14px rgba(160,60,40,0.3);
+    }
+    .music-btn:hover { opacity: 0.9; }
+
+    /* ── PHOTO GRID ── */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      padding: 20px 20px 30px;
+    }
+    @keyframes fadeInPhoto {
+      from { opacity: 0; transform: scale(0.97); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+    .photo-frame {
+      aspect-ratio: 4 / 3;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #1a0a06;
+      opacity: 0;
+      box-shadow: 0 4px 16px rgba(100,30,10,0.15);
+    }
+    .photo-frame.revealed {
+      animation: fadeInPhoto 1.4s ease forwards;
+    }
+    .photo-frame.revealed:hover { transform: scale(1.02); box-shadow: 0 6px 20px rgba(160,60,40,0.22); }
+    .photo-frame img { width: 100%; height: 100%; object-fit: contain; display: block; background: #1a0a06; }
+  </style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash" onclick="openCard()">
+  <div class="splash-flowers">🌹💕🌸💕🌹</div>
+  <div class="splash-title">
+    Happy Mother's Day
+    <em>for my beautiful Shayla</em>
+  </div>
+  <button class="splash-btn" onclick="openCard()">Open Your Card</button>
+  <div class="splash-hint">tap anywhere to begin</div>
+</div>
+
+<!-- TOOLBAR (hidden in final version) -->
+<div class="toolbar" id="toolbar" style="display: none;">
+  <div class="toolbar-note">
+    <strong>Step 1:</strong> Click <strong>📸 Load All Photos</strong> and select all 14 photos at once. <strong>Step 2:</strong> Click <strong>💾 Save Card</strong> to download the finished card ready to share!
+  </div>
+  <button class="btn btn-photos" onclick="loadAllPhotos()">📸 Load All Photos</button>
+  <button class="btn btn-music" id="musicBtn" onclick="toggleMusic()">🎵 Play Music</button>
+  <button class="btn btn-save" onclick="saveCard()">💾 Save Card</button>
+</div>
+
+<!-- CARD -->
+<div class="card">
+
+  <div class="header">
+    <div class="holiday">Happy Mother's Day</div>
+    <h1>Shayla
+      <em>my love, my partner, my everything</em>
+    </h1>
+    <div class="hearts">❤️ 🌹 ❤️</div>
+  </div>
+
+  <div class="message-section">
+    <p>Since 2009, you have been my best friend, my partner, and my heart. I can't believe it's already been 16 years — and every single one of them has been better because of you.</p>
+    <p>The way you put our kids before yourself every single day… it amazes me. You are an incredible mother, and I am so proud to call you mine.</p>
+    <p>Thank you for everything you do for our family. I love you more than words can say.</p>
+  </div>
+
+  <div class="ornament">🌹 🌸 🌹</div>
+
+  <div class="music-bar">
+    <button class="music-btn" id="musicBtn2" onclick="toggleMusic()">🎵 Play Music</button>
+  </div>
+
+  <!-- PHOTO GRID -->
+  <div class="photo-grid">
+    <div class="photo-frame" id="frame0"><img id="img0" src="Pic 1.png"  alt="Photo 1"></div>
+    <div class="photo-frame" id="frame1"><img id="img1" src="Pic 2.jpg"  alt="Photo 2"></div>
+    <div class="photo-frame" id="frame2"><img id="img2" src="Pic 3.jpg"  alt="Photo 3"></div>
+    <div class="photo-frame" id="frame3"><img id="img3" src="Pic 4.jpg"  alt="Photo 4"></div>
+    <div class="photo-frame" id="frame4"><img id="img4" src="Pic 5.jpg"  alt="Photo 5"></div>
+    <div class="photo-frame" id="frame5"><img id="img5" src="Pic 6.jpg"  alt="Photo 6"></div>
+    <div class="photo-frame" id="frame6"><img id="img6" src="Pic 7.jpg"  alt="Photo 7"></div>
+    <div class="photo-frame" id="frame7"><img id="img7" src="Pic 8.jpg"  alt="Photo 8"></div>
+    <div class="photo-frame" id="frame8"><img id="img8" src="Pic 9.png"  alt="Photo 9"></div>
+    <div class="photo-frame" id="frame9"><img id="img9" src="Pic 10.jpg" alt="Photo 10"></div>
+    <div class="photo-frame" id="frame10"><img id="img10" src="Pic 11.jpg" alt="Photo 11"></div>
+    <div class="photo-frame" id="frame11"><img id="img11" src="Pic 12.jpg" alt="Photo 12"></div>
+    <div class="photo-frame" id="frame12"><img id="img12" src="Pic 13.jpg" alt="Photo 13"></div>
+    <div class="photo-frame" id="frame13"><img id="img13" src="Pic 14.jpg" alt="Photo 14"></div>
+  </div>
+
+  <div class="signature">Forever yours, Jason ❤️</div>
+
+</div><!-- /card -->
+
+<!-- Audio — A Thousand Years, Christina Perri -->
+<audio id="bgMusic" loop="" preload="none">
+  <source src="https://archive.org/download/ChristinaPerriAThousandYearsOfficialMusicVideo/Christina%20Perri%20%20%20A%20Thousand%20Years%20%28Official%20Music%20Video%29.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  let musicPlaying = false;
+
+  function openCard() {
+    const splash = document.getElementById('splash');
+    splash.classList.add('fade-out');
+    setTimeout(() => { splash.style.display = 'none'; }, 850);
+
+    // Reset all frames to hidden for the reveal
+    for (let i = 0; i < 14; i++) {
+      const frame = document.getElementById('frame' + i);
+      if (frame) {
+        frame.classList.remove('revealed');
+        frame.style.opacity = '0';
+      }
+    }
+
+    // Photos ALWAYS reveal — independent of music
+    startPhotoReveal();
+    // Music plays separately — won't block photos if it fails
+    startMusic();
+  }
+
+  function startMusic() {
+    const audio = document.getElementById('bgMusic');
+    const btn1  = document.getElementById('musicBtn');
+    const btn2  = document.getElementById('musicBtn2');
+    audio.play().then(() => {
+      musicPlaying = true;
+      if (btn1) btn1.textContent = '🔇 Stop Music';
+      if (btn2) btn2.textContent = '🔇 Stop Music';
+    }).catch(() => {
+      if (btn1) btn1.textContent = '🎵 Play Music';
+      if (btn2) btn2.textContent = '🎵 Play Music';
+    });
+  }
+
+  function startPhotoReveal() {
+    // A Thousand Years is ~4:45. 14 photos at 20s apart = last photo at 4:20, just before song ends.
+    for (let i = 0; i < 14; i++) {
+      setTimeout(() => {
+        const frame = document.getElementById('frame' + i);
+        if (frame) {
+          frame.style.opacity = '';
+          frame.classList.add('revealed');
+        }
+      }, i * 20000);
+    }
+  }
+
+  function toggleMusic() {
+    const audio = document.getElementById('bgMusic');
+    const btn1  = document.getElementById('musicBtn');
+    const btn2  = document.getElementById('musicBtn2');
+    if (musicPlaying) {
+      audio.pause();
+      musicPlaying = false;
+      if (btn1) btn1.textContent = '🎵 Play Music';
+      if (btn2) btn2.textContent = '🎵 Play Music';
+    } else {
+      audio.play().then(() => {
+        musicPlaying = true;
+        if (btn1) btn1.textContent = '🔇 Stop Music';
+        if (btn2) btn2.textContent = '🔇 Stop Music';
+      });
+    }
+  }
+
+  function loadAllPhotos() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.multiple = true;
+    input.accept = 'image/*';
+    input.onchange = function(e) {
+      const files = Array.from(e.target.files).sort((a, b) =>
+        a.name.localeCompare(b.name, undefined, { numeric: true, sensitivity: 'base' })
+      );
+      files.forEach((file, i) => {
+        if (i >= 14) return;
+        const reader = new FileReader();
+        reader.onload = function(ev) {
+          const img   = document.getElementById('img' + i);
+          const frame = document.getElementById('frame' + i);
+          if (img)   img.src = ev.target.result;
+          if (frame) { frame.classList.add('has-photo'); frame.style.opacity = '1'; }
+        };
+        reader.readAsDataURL(file);
+      });
+    };
+    input.click();
+  }
+
+  function saveCard() {
+    const toolbar = document.getElementById('toolbar');
+    const splash  = document.getElementById('splash');
+    const audio   = document.getElementById('bgMusic');
+
+    audio.pause();
+    musicPlaying = false;
+
+    // Reset to initial state for recipient
+    splash.style.display = 'flex';
+    splash.style.opacity = '1';
+    splash.className     = '';
+
+    for (let i = 0; i < 14; i++) {
+      const frame = document.getElementById('frame' + i);
+      if (frame) { frame.classList.remove('revealed'); frame.style.opacity = '0'; }
+    }
+
+    // Try to embed images via canvas
+    for (let i = 0; i < 14; i++) {
+      const img = document.getElementById('img' + i);
+      if (img && img.complete && img.naturalWidth && !img.src.startsWith('data:')) {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width  = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          canvas.getContext('2d').drawImage(img, 0, 0);
+          img.src = canvas.toDataURL('image/jpeg', 0.88);
+        } catch(e) {}
+      }
+    }
+
+    toolbar.style.display = 'none';
+    const html = '<!DOCTYPE html>\n<html lang="en">\n' + document.documentElement.innerHTML + '\n</html>';
+    toolbar.style.display = '';
+    splash.style.display  = 'none';
+
+    for (let i = 0; i < 14; i++) {
+      const frame = document.getElementById('frame' + i);
+      if (frame) frame.style.opacity = '1';
+    }
+
+    const blob = new Blob([html], { type: 'text/html' });
+    const a    = document.createElement('a');
+    a.href     = URL.createObjectURL(blob);
+    a.download = 'Shayla_MothersDay_Card.html';
+    a.click();
+  }
+</script>
+</body>
+</html>
